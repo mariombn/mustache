@@ -64,13 +64,15 @@ if (count($_PARA) >= 1) {
 }
 
 // Autoload para as classes models e controller
+
+//TODO: Change __autoload for spl_autoload_register
 function __autoload($classname)
 {
     if (file_exists(APPPATH . '/app/controller/' . $classname . '.php')) {
         require_once APPPATH . '/app/controller/' . $classname . '.php';
-    }
-
-    if (file_exists(APPPATH . '/app/model/' . $classname . '.php')) {
+    } else if (file_exists(APPPATH . '/app/model/' . $classname . '.php')) {
         require_once APPPATH . '/app/model/' . $classname . '.php';
+    } else  if (file_exists(APPPATH . '/app/global/' . $classname . '.php')) {
+        require_once APPPATH . '/app/global/' . $classname . '.php';
     }
 }
