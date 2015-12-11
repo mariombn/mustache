@@ -1,10 +1,10 @@
 <?php
 //Configurações do Framework
 define( 'APPPATH', dirname( __FILE__ ) );
-define( 'DB_HOSTNAME', 'HOSTNAME-DATABASE-HERE' );
-define( 'DB_USERNAME', 'USERNAME-DATABASE-HERE' );
-define( 'DB_PASSWORD', 'PASSWORD-DATABASE-HERE' );
-define( 'DB_DATABASE', 'DATABASE-HERE' );
+define( 'DB_HOSTNAME', '192.168.52.52' );
+define( 'DB_USERNAME', 'root' );
+define( 'DB_PASSWORD', 'admindb' );
+define( 'DB_DATABASE', 'mustache' );
 define( 'DB_CHARSET', 'utf-8' );
 define( 'DEBUG', true );
 

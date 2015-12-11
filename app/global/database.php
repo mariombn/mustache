@@ -3,6 +3,6 @@
 class database
 {
     public function teste() {
-        echo md5('jonas');
+        echo md5('admin');
     }
 }
