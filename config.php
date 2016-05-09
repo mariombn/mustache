@@ -1,18 +1,18 @@
 <?php
 //Configurações do Framework
 define( 'APPPATH', dirname( __FILE__ ) );
-define( 'DB_HOSTNAME', '192.168.52.52' );
+define( 'DB_HOSTNAME', '127.0.0.1' );
 define( 'DB_USERNAME', 'root' );
-define( 'DB_PASSWORD', 'admindb' );
-define( 'DB_DATABASE', 'mustache' );
+define( 'DB_PASSWORD', '' );
+define( 'DB_DATABASE', '' );
 define( 'DB_CHARSET', 'utf-8' );
-define( 'DEBUG', true );
+define( 'DEBUG', true ); // Troque o valor para FALSE em um ambiente de Produção
 
 define( 'APP_NAME', 'PROJECT-NAME' );
-define( 'APP_COPYRIGHT', '&copy; 2015 - TODOS OS DIREITOS RESERVADOS' );
+define( 'APP_COPYRIGHT', '&copy; 2016 - All rights reserved' );
 define( 'APP_OWNER', 'AUTHOR-NAME' );
 define( 'APP_DESCRIPTION', 'DESCRIPTION-PROJECT' );
-define( 'HOME_PATH', 'http://mustache.dev/' );
+define( 'HOME_PATH', 'http://mustache.dev/' ); // Para evitar problemas, sempre use um Virtual Host no seu Servidor WEB para rodar esse Framework
 
 define( 'APP_VERSION_BIG', '0' );
 define( 'APP_VERSION_MID', '0' );

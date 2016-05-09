@@ -40,7 +40,7 @@ $_GET['path'] = (isset($_GET['path']) ? $_GET['path'] : 'index/index');
 $separatorPath = explode('/', $_GET['path']);
 
 //Define o controller
-$controller = $separatorPath[0] . 'Controller';
+$controller = ucfirst($separatorPath[0]) . 'Controller';
 
 //Define a action (caso não sejá informado, é definido index como padrão)
 $action = (isset($separatorPath[1]) ? $separatorPath[1] : 'index');
@@ -57,11 +57,23 @@ if (count($separatorPath) >= 3) {
 
 //Instancia Controller e chama a action
 $application = new $controller();
-if (count($_PARA) >= 1) {
-    $application->$action($_PARA);
+
+//Debug::dump($_POST);
+
+if (empty($_POST)) {
+    if (count($_PARA) >= 1) {
+        $application->$action($_PARA);
+    } else {
+        $application->$action();
+    }
 } else {
-    $application->$action();
+    if (count($_PARA) >= 1) {
+        $application->$action($_PARA, $_POST);
+    } else {
+        $application->$action($_POST);
+    }
 }
+
 
 // Autoload para as classes models e controller
 
