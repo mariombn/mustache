@@ -28,19 +28,19 @@ class View
     private $copy = APP_COPYRIGHT;
 
     /**
-     * Valores dinamicos que são passados para a View
+     * Valores dinamicos que sÃ£o passados para a View
      * @var array
      */
     private $vars = array();
 
     /**
-     * Valores dinamicos que são passados para a View
+     * Valores dinamicos que sÃ£o passados para a View
      * @var String
      */
     private $errorMsg = null;
 
     /**
-     * Construtor padrão.
+     * Construtor padrÃ£o.
      * @param String $view
      * @return void
      */
@@ -59,10 +59,10 @@ class View
     public function carregar($special = false)
     {
         if (!$special) {
-            include APPPATH . '/public/includes/header.php';
-            include APPPATH . '/includes/menu.php';
+            //include APPPATH . '/public/includes/header.php';
+            //include APPPATH . '/includes/menu.php';
             include APPPATH . '/public/View/' . $this->name . '.php';
-            include APPPATH . '/public/includes/footer.php';
+            //include APPPATH . '/public/includes/footer.php';
         } else {
             include APPPATH . '/public/View/' . $this->name . '.php';
         }
@@ -89,7 +89,7 @@ class View
     }
 
     /**
-     * Usa como base a definição REQUEST_PATH_BACK para re-escrever um link de redirecionamento
+     * Usa como base a definiÃ§Ã£o REQUEST_PATH_BACK para re-escrever um link de redirecionamento
      * @param String $data
      * @return String $dataFormatada
      */
