@@ -37,6 +37,7 @@
     <h2>It's Work!</h2>
     <h3><?php echo APP_NAME ?></h3>
     <br/>
+    <p><?php echo $this->__get("simple") ?></p>
     <div>
         Mustache is a Micro Framework Open Source developed in PHP for you who want the convenience of an MVC framework in PHP without much work.<br/>
         <br/>

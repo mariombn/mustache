@@ -13,7 +13,7 @@ class Valida
      */
     public static function email($email)
     {
-        if (empty ($email) || !preg_match("/^[_a-zA-Z0-9-]+((\.|_*)[a-zA-Z0-9-]+)*@[_a-zA-Z0-9\-]+((\.|_*)[a-zA-Z0-9-]+)*\.([a-zA-Z]{3,4}|(([a-zA-Z]{3}\.){0,1}[a-zA-Z]{2}))$/", $email)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return false;
         } else {
             return true;
