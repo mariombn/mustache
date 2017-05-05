@@ -37,7 +37,8 @@ if ($counturlpath) {
 define('REQUEST_PATH_BACK', $pathBack);
 
 //Obtem via URL amigavel o valor do path (caso não sejá informado, é definido index/index como padrão)
-$_GET['path'] = (isset($_GET['path']) ? $_GET['path'] : 'index/index');
+
+$_GET['path'] = ((isset($_GET['path']) && !empty($_GET['path'])) ? $_GET['path'] : 'index/index');
 
 //Separa o valor do controller do valor da action
 $separatorPath = explode('/', $_GET['path']);
@@ -61,33 +62,23 @@ $controller = "App\\Controller\\" . $controller;
 $application = new $controller;
 
 //Debug::dump($_POST);
-if (empty($_POST)) {
-    if (count($_PARA) >= 1) {
-        echo $application->$action($_PARA);
+if (method_exists ( $application , $action)) {
+    if (empty($_POST)) {
+        if (count($_PARA) >= 1) {
+            echo $application->$action($_PARA);
+        } else {
+            echo $application->$action();
+        }
     } else {
-        echo $application->$action();
+        if (count($_PARA) >= 1) {
+            echo $application->$action($_PARA, $_POST);
+        } else {
+            echo $application->$action($_POST);
+        }
     }
 } else {
-    if (count($_PARA) >= 1) {
-        echo $application->$action($_PARA, $_POST);
-    } else {
-        echo $application->$action($_POST);
-    }
+    http_response_code(404);
+    //include('my_404.php'); // provide your own HTML for the error page
+    header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
+    die();
 }
-
-
-// Autoload para as classes models e controller
-
-/*
-function __autoload($classname)
-{
-
-    if (file_exists(APPPATH . '/app/controller/' . $classname . '.php')) {
-        require_once APPPATH . '/app/controller/' . $classname . '.php';
-    } else if (file_exists(APPPATH . '/app/model/' . $classname . '.php')) {
-        require_once APPPATH . '/app/model/' . $classname . '.php';
-    } else  if (file_exists(APPPATH . '/mustache/' . $classname . '.php')) {
-        require_once APPPATH . '/mustache/' . $classname . '.php';
-    }
-}
-*/

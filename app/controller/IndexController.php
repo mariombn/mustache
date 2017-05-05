@@ -11,7 +11,12 @@ class IndexController extends Controller
     public function index()
     {
         try {
-            //echo "ab";
+
+            $simple = new Simple();
+            $simple->id = 1;
+            $simple->name = 'Novo Nome';
+            $simple->save();
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }
