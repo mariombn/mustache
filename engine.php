@@ -1,7 +1,9 @@
 <?php
 session_start();
+define('ENGINE_START', microtime(true));
+require_once APPPATH . '/vendor/autoload.php';
 
-//Defini visualização de erros de acordo com o modo Debug true ou false
+//Defini visualizaÃ§Ã£o de erros de acordo com o modo Debug true ou false
 if (!defined('DEBUG') || DEBUG === FALSE) {
     error_reporting(0);
     ini_set("display_errors", 0);
@@ -11,7 +13,8 @@ if (!defined('DEBUG') || DEBUG === FALSE) {
     ini_set("display_errors", 1);
 }
 
-//Define o número de parametros na URL
+
+//Define o nÃºmero de parametros na URL
 if (isset($_GET['path'])) {
     if (substr($_GET['path'], -1, 1) == '/') {
         $counturlpath = substr($_GET['path'], 0, -1);
@@ -33,7 +36,7 @@ if ($counturlpath) {
 
 define('REQUEST_PATH_BACK', $pathBack);
 
-//Obtem via URL amigavel o valor do path (caso não sejá informado, é definido index/index como padrão)
+//Obtem via URL amigavel o valor do path (caso nÃ£o sejÃ¡ informado, Ã© definido index/index como padrÃ£o)
 $_GET['path'] = (isset($_GET['path']) ? $_GET['path'] : 'index/index');
 
 //Separa o valor do controller do valor da action
@@ -42,11 +45,11 @@ $separatorPath = explode('/', $_GET['path']);
 //Define o controller
 $controller = ucfirst($separatorPath[0]) . 'Controller';
 
-//Define a action (caso não sejá informado, é definido index como padrão)
+//Define a action (caso nÃ£o sejÃ¡ informado, Ã© definido index como padrÃ£o)
 $action = (isset($separatorPath[1]) ? $separatorPath[1] : 'index');
 if ($action == '') $action = 'index';
 
-//Verificação de Parametros
+//VerificaÃ§Ã£o de Parametros
 $_PARA = Array();
 if (count($separatorPath) >= 3) {
     for ($separatorPathCount = 2; $separatorPathCount < count($separatorPath); $separatorPathCount++) {
@@ -54,37 +57,37 @@ if (count($separatorPath) >= 3) {
     }
 }
 
-
-//Instancia Controller e chama a action
-$application = new $controller();
+$controller = "App\\Controller\\" . $controller;
+$application = new $controller;
 
 //Debug::dump($_POST);
-
 if (empty($_POST)) {
     if (count($_PARA) >= 1) {
-        $application->$action($_PARA);
+        echo $application->$action($_PARA);
     } else {
-        $application->$action();
+        echo $application->$action();
     }
 } else {
     if (count($_PARA) >= 1) {
-        $application->$action($_PARA, $_POST);
+        echo $application->$action($_PARA, $_POST);
     } else {
-        $application->$action($_POST);
+        echo $application->$action($_POST);
     }
 }
 
 
 // Autoload para as classes models e controller
 
-//TODO: Change __autoload for spl_autoload_register
+/*
 function __autoload($classname)
 {
+
     if (file_exists(APPPATH . '/app/controller/' . $classname . '.php')) {
         require_once APPPATH . '/app/controller/' . $classname . '.php';
     } else if (file_exists(APPPATH . '/app/model/' . $classname . '.php')) {
         require_once APPPATH . '/app/model/' . $classname . '.php';
-    } else  if (file_exists(APPPATH . '/app/global/' . $classname . '.php')) {
-        require_once APPPATH . '/app/global/' . $classname . '.php';
+    } else  if (file_exists(APPPATH . '/mustache/' . $classname . '.php')) {
+        require_once APPPATH . '/mustache/' . $classname . '.php';
     }
 }
+*/
