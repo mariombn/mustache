@@ -1,0 +1,11 @@
+#!/usr/bin/env php
+<?php
+define('ENGINE_START', microtime(true));
+
+require_once 'config.php';
+require_once APPPATH . '/vendor/autoload.php';
+
+$cli = new Mustache\Cli();
+$cli->main($argv);
+
+define('ENGINE_STOP', microtime(true));

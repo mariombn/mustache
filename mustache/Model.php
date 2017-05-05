@@ -4,12 +4,10 @@ namespace Mustache;
 
 class Model
 {
-    public function teste()
-    {
-        Debug::dump(get_object_vars ($this));
-        Debug::dump(get_class ($this));
-    }
-
+    /**
+     * Method responsible for saving the values of the entity attributes in the Database
+     * @return $this
+     */
     public function save()
     {
         $atributes = get_object_vars ($this);

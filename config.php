@@ -11,5 +11,3 @@ if (file_exists(APPPATH . '/config.ini')) {
 foreach ($_local_file_config as $k => $v) {
     define( $k, $v );
 }
-
-require_once APPPATH . '/engine.php';
