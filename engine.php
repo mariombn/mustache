@@ -1,9 +1,14 @@
 <?php
+
+/**
+ * Mustache Engine
+ * Author: Mario de Moraes Barros Neto <mariombn@gmail.com>
+ */
+
 session_start();
 define('ENGINE_START', microtime(true));
 require_once APPPATH . '/vendor/autoload.php';
 
-//Defini visualização de erros de acordo com o modo Debug true ou false
 if (!defined('DEBUG') || DEBUG === FALSE) {
     error_reporting(0);
     ini_set("display_errors", 0);
@@ -13,8 +18,6 @@ if (!defined('DEBUG') || DEBUG === FALSE) {
     ini_set("display_errors", 1);
 }
 
-
-//Define o número de parametros na URL
 if (isset($_GET['path'])) {
     if (substr($_GET['path'], -1, 1) == '/') {
         $counturlpath = substr($_GET['path'], 0, -1);
@@ -34,23 +37,13 @@ if ($counturlpath) {
     }
 }
 
-define('REQUEST_PATH_BACK', $pathBack);
-
-//Obtem via URL amigavel o valor do path (caso não sejá informado, é definido index/index como padrão)
-
 $_GET['path'] = ((isset($_GET['path']) && !empty($_GET['path'])) ? $_GET['path'] : 'index/index');
-
-//Separa o valor do controller do valor da action
 $separatorPath = explode('/', $_GET['path']);
-
-//Define o controller
 $controller = ucfirst($separatorPath[0]) . 'Controller';
-
-//Define a action (caso não sejá informado, é definido index como padrão)
 $action = (isset($separatorPath[1]) ? $separatorPath[1] : 'index');
+
 if ($action == '') $action = 'index';
 
-//Verificação de Parametros
 $_PARA = Array();
 if (count($separatorPath) >= 3) {
     for ($separatorPathCount = 2; $separatorPathCount < count($separatorPath); $separatorPathCount++) {
@@ -61,7 +54,6 @@ if (count($separatorPath) >= 3) {
 $controller = "App\\Controller\\" . $controller;
 $application = new $controller;
 
-//Debug::dump($_POST);
 if (method_exists ( $application , $action)) {
     if (empty($_POST)) {
         if (count($_PARA) >= 1) {
@@ -78,7 +70,6 @@ if (method_exists ( $application , $action)) {
     }
 } else {
     http_response_code(404);
-    //include('my_404.php'); // provide your own HTML for the error page
     header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found");
     die();
 }

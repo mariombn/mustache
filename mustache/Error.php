@@ -10,12 +10,14 @@ class Error
     }
 
     /**
+     * Display an error with print_r
      * @param $messenge
+     * @param bool $cli
      */
-    public static function display($messenge)
+    public static function display($messenge, $cli = false)
     {
-        echo '<pre>';
+        if (!$cli) echo '<pre>';
         print_r($messenge);
-        echo '</pre>';
+        if (!$cli) echo '</pre>';
     }
 }

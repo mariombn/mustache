@@ -12,10 +12,8 @@ class IndexController extends Controller
     {
         try {
 
-            $simple = new Simple();
-            $simple->id = 1;
-            $simple->name = 'Novo Nome';
-            $simple->save();
+            $view = new View('index.index');
+            $view->show();
 
         } catch (Exception $e) {
             echo $e->getMessage();
