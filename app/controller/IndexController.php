@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Model\User;
 use Mustache\Controller;
+use Mustache\Debug;
 use Mustache\View;
 use App\Model\Simple;
 
@@ -18,5 +20,12 @@ class IndexController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+
+    public function teste()
+    {
+        $user = new User();
+        $collection = $user->listCollection();
+
     }
 }

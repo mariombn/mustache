@@ -2,8 +2,13 @@
 
 namespace Mustache;
 
+use PDO;
+
 class Migration
 {
+    /**
+     * Run Migration
+     */
     public function run()
     {
         $table = 'migration';
@@ -15,6 +20,41 @@ class Migration
         }
     }
 
+    /**
+     * Execute Revert of Migration
+     * @param null $table
+     */
+    public function revert($table = null)
+    {
+        $con = Database::getInstance();
+        $query = "select id, file, table_name, created_at from migration ";
+        if (!empty($table)) {
+            $query .= " where table_name = :table_name ";
+        }
+        $query .= " order by created_at desc ";
+        $stmt = $con->prepare($query);
+        if (!empty($table)) {
+            $stmt->bindValue(':table_name', $table);
+        }
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($result as $line) {
+            $queryDrop = file_get_contents(APPPATH . '/migration/revert/' . $line['file']);
+            $con->query($queryDrop);
+            $queryRemoveMigration = "delete from migration where table_name = :table_name";
+            $stmt = $con->prepare($queryRemoveMigration);
+            $stmt->bindValue(':table_name', $line['table_name']);
+            $stmt->execute();
+            Cli::printnl("Table " . $line['table_name'] . " droped successfully");
+        }
+        Cli::printnl("Revert successfully");
+    }
+
+    /**
+     * Create a migration
+     * @throws \Exception
+     */
     private function createMigration()
     {
         if (!$this->genereteMigrationTable()) {
@@ -41,6 +81,10 @@ class Migration
         }
     }
 
+    /**
+     * Update a parcial Migration
+     * @throws \Exception
+     */
     private function updateMigration()
     {
         $path = APPPATH . '/migration/apply';
@@ -80,6 +124,10 @@ class Migration
 
     }
 
+    /**
+     * Create a migration table for internal framework controller
+     * @return \PDOStatement
+     */
     private function genereteMigrationTable()
     {
         $query = "CREATE TABLE migration (

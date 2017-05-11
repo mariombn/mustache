@@ -4,7 +4,7 @@ namespace App\Model;
 
 use Mustache\Model;
 
-class Simple extends Model
+class User extends Model
 {
 
 }

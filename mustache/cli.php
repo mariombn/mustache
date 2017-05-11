@@ -74,7 +74,23 @@ class Cli
     private function migrate()
     {
         $migrate = new Migration();
-        $migrate->run();
+
+        if (count($this->parameters) == 0) {
+            $migrate->run();
+        } else {
+            switch ($this->parameters[0]) {
+                case 'apply':
+                    $migrate->run();
+                    break;
+                case 'revert':
+                    if (empty($this->parameters[1])) {
+                        $migrate->revert();
+                    } else {
+                        $migrate->revert($this->parameters[1]);
+                    }
+                    break;
+            }
+        }
     }
 
     private function genereteMigration($name)
