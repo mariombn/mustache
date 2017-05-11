@@ -34,13 +34,23 @@ class Cli
     {
         self::printnl('');
         self::printnl('=== Cli - Your Command Line Attendant for Mustache! ===');
-
+        self::printnl('  __       __                        __                          __  ');
+        self::printnl('  |  \     /  \                      |  \                        |  \  ');
+        self::printnl('  | $$\   /  $$ __    __   _______  _| $$_     ______    _______ | $$____    ______  ');
+        self::printnl('  | $$$\ /  $$$|  \  |  \ /       \|   $$ \   |      \  /       \| $$    \  /      \  ');
+        self::printnl('  | $$$$\  $$$$| $$  | $$|  $$$$$$$ \$$$$$$    \$$$$$$\|  $$$$$$$| $$$$$$$\|  $$$$$$\  ');
+        self::printnl('  | $$\$$ $$ $$| $$  | $$ \$$    \   | $$ __  /      $$| $$      | $$  | $$| $$    $$  ');
+        self::printnl('  | $$ \$$$| $$| $$__/ $$ _\$$$$$$\  | $$|  \|  $$$$$$$| $$_____ | $$  | $$| $$$$$$$$  ');
+        self::printnl('  | $$  \$ | $$ \$$    $$|       $$   \$$  $$ \$$    $$ \$$     \| $$  | $$ \$$     \  ');
+        self::printnl('   \$$      \$$  \$$$$$$  \$$$$$$$     \$$$$   \$$$$$$$  \$$$$$$$ \$$   \$$  \$$$$$$$  ');
+        self::printnl('');
         self::printnl('Command List:');
         self::printnl('  generete                                       -> Generates a php Model or Controller class file');
         self::printnl('    generete model ModelName                     -> Generates a php Model class file');
         self::printnl('    generete controller ControllerNameController -> Generates a php Controller class file');
         self::printnl('    generete migration tablename                 -> Generates a sql script for create and drop table');
-
+        self::printnl('  migrate                                        -> Rotate the scripts inside the directory /migration/apply/');
+        self::printnl('    migrate revert <table_name>                  -> Revert migration on the scripts inside the diretory /migration/revert/');
         self::printnl('');
         self::printnl('=======================================================');
     }
