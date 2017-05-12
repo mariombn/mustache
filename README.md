@@ -16,10 +16,10 @@ If you are going to work with a specific vendor, you can edit the composer JSON 
 composer install
 cp config.dist.ini config.ini
 ```
-> ~~To develop locally, you must use the command:~~
-A solution below is working. Per hour, use a WebServe separately as Apache with Rewrite rules enabled
+To develop locally, you must use the command:
 ```
-php -S 127.0.0.1:8888 -t public
+cd public
+php -S 127.0.0.1:8888 router.php
 ```
 
 Then just put the address http://127.0.0.1:8888/ in your browser and check if the Mustache home page is loading correctly

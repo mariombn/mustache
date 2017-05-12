@@ -9,5 +9,4 @@
  *  @Versão: 2.0.0 alpha
  */
 
-require_once __DIR__.'/../config.php';
 require_once __DIR__.'/../engine.php';

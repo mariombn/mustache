@@ -24,7 +24,6 @@ class Cli
                 $this->generete();
                 break;
             case 'migrate':
-                // TODO: Need to be thought of in the logic for the revert of the tables
                 $this->migrate();
                 break;
             default:
