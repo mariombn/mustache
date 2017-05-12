@@ -21,10 +21,4 @@ class IndexController extends Controller
             echo $e->getMessage();
         }
     }
-
-    public function teste()
-    {
-        echo $_SERVER['HTTP_HOST'];
-
-    }
 }
