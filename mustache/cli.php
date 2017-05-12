@@ -17,6 +17,9 @@ class Cli
         }
 
         switch ($this->command) {
+            case 'console':
+                $this->console();
+                break;
             case 'generete':
                 $this->generete();
                 break;
@@ -120,6 +123,33 @@ class Cli
         $file_name = date('Y-m-d_His') . '_' . $name . '.sql';
         file_put_contents($path_name . $file_name, $file);
         self::printnl('File ' . $file_name . ' created in ' . $path_name);
+    }
+
+    public function console()
+    {
+        if (count($this->parameters) == 0) {
+            self::printnl('No parameters entered for the command "console"');
+            exit;
+        }
+        $args = array();
+        foreach ($this->parameters as $k =>$parameter) {
+            if ($k == 0) {
+                $command = $parameter;
+            } else {
+                $args[] = $parameter;
+            }
+        }
+
+        $console = new \App\Controller\ConsoleController();
+        if (method_exists($console, $command)) {
+            if (count($args) == 0) {
+                $console->$command();
+            } else {
+                $console->$command($args);
+            }
+        } else {
+            self::printnl('Command not implemented');
+        }
     }
     
     public static function printnl($buffer)
