@@ -7,6 +7,20 @@
 
 session_start();
 define('ENGINE_START', microtime(true));
+
+//Configurações do Framework
+define( 'APPPATH', dirname( __FILE__ ) );
+define( 'HOME_PATH', 'http://' . $_SERVER['HTTP_HOST'] . '/');
+
+if (file_exists(APPPATH . '/config.ini')) {
+    $_local_file_config = parse_ini_file(APPPATH . '/config.ini');
+} else {
+    Mustache\Error::display('Configuration file not found');
+}
+foreach ($_local_file_config as $k => $v) {
+    define( $k, $v );
+}
+
 require_once APPPATH . '/vendor/autoload.php';
 
 if (!defined('DEBUG') || DEBUG === FALSE) {

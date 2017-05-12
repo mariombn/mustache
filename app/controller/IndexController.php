@@ -24,8 +24,7 @@ class IndexController extends Controller
 
     public function teste()
     {
-        $user = new User();
-        $collection = $user->listCollection();
+        echo $_SERVER['HTTP_HOST'];
 
     }
 }
