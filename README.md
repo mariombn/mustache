@@ -9,6 +9,8 @@ Mustache also comes with the Bootstrap framework configured, but nothing prevent
 ## Installation
 Clone this repository (Branch Master or the Release of your choice) or download the zip and place it in a directory where your web server has access.
 
+If you are going to work with a specific package, you can edit the composer.json file by placing the dependencies that you find necessary in your project
+
 If you are going to work with a specific vendor, you can edit the composer JSON file and then just run the command
 ```
 composer install
