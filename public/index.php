@@ -1,11 +1,12 @@
 <?php
 /**
- *  BlacKinght <www.blackinght.com>
+ *  Mustache <www.mustachemvc.com>
  *
  *  @Autor: Mario de Moraes Barros Neto <mariombn@gmail.com>
- *  @CriaÁ„o: Dezembro de 2015
- *  @Ultima AtualizaÁ„o: 01/12/2015
+ *  @Cria√ß√£o: Dezembro de 2015
+ *  @Ultima Atualiza√ß√£o: 09/05/2017
  * 	@Contato: mariombn@gmail.com
- *  @Vers„o: 0.1.0
+ *  @Vers√£o: 2.0.0 alpha
  */
-require_once '../config.php';
+
+require_once __DIR__.'/../engine.php';

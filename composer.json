@@ -1,0 +1,18 @@
+{
+  "name": "Mustache",
+  "authors": [
+    {
+      "name": "Mario de Moraes Barros Neto",
+      "email": "mariombn@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.28"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Mustache\\": "mustache/"
+    }
+  }
+}

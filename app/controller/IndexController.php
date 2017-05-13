@@ -1,13 +1,22 @@
 <?php
 
-class IndexController
+namespace App\Controller;
+
+use App\Model\User;
+use Mustache\Controller;
+use Mustache\Debug;
+use Mustache\View;
+use App\Model\Simple;
+
+class IndexController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         try {
-            $simple = new Simple();
-            $view = new View('index/index');
-            $view->__set("simple", $simple->simple());
-            $view->carregar();
+
+            $view = new View('index.index');
+            $view->show();
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }

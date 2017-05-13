@@ -1,0 +1,9 @@
+{
+  "title": "Mustache, um micro framework php!",
+  "description": "Mustache é um microframework php com algumas facilidades para você. Aproveite uma estrutura completa de MVC e algumas facilidades na criação de Modelos integrados a entidades do MariaDB (MySQL) mas ainda usando seus conhecimentos de php puro!",
+  "menu": {
+    "home": "Inicio",
+    "about": "Saiba mais",
+    "github": "GITHUB"
+  }
+}
